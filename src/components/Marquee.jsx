@@ -20,12 +20,12 @@ const Marquee = ({
         className="flex items-center"
       >
         {items.map((text, index) => (
-          <span
-            key={index}
-            className="flex items-center px-0 sm:px-1 md:px-4 lg:px-12 gap-x-0 sm:gap-x-3 md:gap-x-10 lg:gap-x-24 ultra-small-screen"
-          >
-            {text} <Icon icon={icon} className={iconClassName} />
-          </span>
+          <React.Fragment key={index}>
+            <span className="px-1 sm:px-1 md:px-4 lg:px-12 ultra-small-screen">
+              {text}
+            </span>
+            <Icon icon={icon} className={`${iconClassName} mx-1.5 sm:mx-1.5 md:mx-5 lg:mx-12`} />
+          </React.Fragment>
         ))}
       </ScrollVelocityRow>
     </ScrollVelocityContainer>

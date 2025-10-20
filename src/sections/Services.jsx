@@ -37,7 +37,7 @@ const Services = () => {
         <div
           ref={(el) => (serviceRefs.current[index] = el)}
           key={index}
-          className="sticky px-0 sm:px-1 md:px-3 lg:px-6 pt-6 pb-12 text-white bg-black border-t-2 border-white/30 ultra-small-screen"
+          className="sticky px-1 sm:px-1 md:px-3 lg:px-6 pt-6 pb-12 text-white bg-black border-t-2 border-white/30 ultra-small-screen"
           style={
             isDesktop
               ? {
