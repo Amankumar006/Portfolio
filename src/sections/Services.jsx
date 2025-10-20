@@ -63,7 +63,7 @@ const Services = () => {
                       <span className="flex-1">{item.title}</span>
                     </h3>
                     {itemIndex < service.items.length - 1 && (
-                      <div className="w-screen h-px my-2 bg-white/30 -ml-0 sm:-ml-1 md:-ml-3 lg:-ml-6" />
+                      <div className="w-full h-px my-2 bg-white/30" />
                     )}
                   </div>
                 ))}

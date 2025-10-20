@@ -13,7 +13,7 @@ const Marquee = ({
   reverse = false,
 }) => {
   return (
-    <ScrollVelocityContainer className={`overflow-hidden w-full h-20 md:h-[100px] flex items-center marquee-text-responsive font-light uppercase whitespace-nowrap ${className}`}>
+    <ScrollVelocityContainer className={`overflow-hidden w-full h-20 md:h-[100px] flex items-center marquee-text-responsive font-light uppercase ${className}`}>
       <ScrollVelocityRow 
         baseVelocity={5} 
         direction={reverse ? -1 : 1}
