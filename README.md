@@ -17,7 +17,8 @@ This is a fully animated, interactive, 3D developer portfolio template designed 
 | ---------------- | --------------------------------------- |
 | **React (Vite)** | Fast dev server and production bundling |
 | **Tailwind CSS** | Utility-first styling for components    |
-| **GSAP**         | Scroll-based animation and motion logic |
+| **GSAP**         | General animations and transitions |
+| **Motion**         | Scroll-based marquee animations |
 | **Three.js**     | 3D scenes powered by React Three Fiber  |
 | **Drei**         | Useful helpers for 3D rendering         |
 
