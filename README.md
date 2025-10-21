@@ -4,7 +4,7 @@
   <img src="./public/images/thumbnail.png" alt="Portfolio Thumbnail" />
 </a>
 
-### Built with React, GSAP, Three.js, TailwindCSS
+### Built with React, GSAP, Three.js, TailwindCSS & Framer Motion
 
 This is a fully animated, interactive, 3D developer portfolio template designed to **impress clients, recruiters, and hiring managers**. It's more than a portfolio—it's a web experience built with production-level code, scroll-based animations, and real-world best practices.
 
@@ -17,8 +17,8 @@ This is a fully animated, interactive, 3D developer portfolio template designed 
 | ---------------- | --------------------------------------- |
 | **React (Vite)** | Fast dev server and production bundling |
 | **Tailwind CSS** | Utility-first styling for components    |
-| **GSAP**         | General animations and transitions |
-| **Motion**         | Scroll-based marquee animations |
+| **GSAP**         | Scroll-triggered animations and transitions |
+| **Framer Motion** | Scroll-velocity-based marquee animations |
 | **Three.js**     | 3D scenes powered by React Three Fiber  |
 | **Drei**         | Useful helpers for 3D rendering         |
 
@@ -31,7 +31,7 @@ This is a fully animated, interactive, 3D developer portfolio template designed 
 - 🎯 Scroll-triggered Service Summary with horizontal word motion
 - 🖼️ Works section with hover overlays and interactive previews
 - ✍️ About section with clip-path image reveal + typewriter text
-- 🏁 Marquee-based Contact Summary and CTA
+- 🏁 Scroll-velocity marquee components with Framer Motion
 - 💼 Fully responsive and accessible on all screen sizes
 
 ---
@@ -39,7 +39,7 @@ This is a fully animated, interactive, 3D developer portfolio template designed 
 ## 📦 Setup & Installation
 
 ```bash
-git clone https://github.com/elijah-farrell/portfolio-template02.git
+git clone https://github.com/elijah-farrell/Awwwards-Portfolio.git
 cd portfolio-template02
 npm install
 npm run dev
@@ -65,5 +65,5 @@ npm run dev
 ## 📣 About This Template
 
 This is a modern, 3D animated portfolio template perfect for developers, designers, and creatives who want to showcase their work in an impressive way.
-
+Based on [Ali-Sanati's awwwards portfolio](https://github.com/Ali-Sanati/awwwards-portfolio).
 ---
