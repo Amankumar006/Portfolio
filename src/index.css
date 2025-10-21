@@ -114,6 +114,20 @@ body {
   font-family: var(--font-amiamie);
 }
 
+/* Fix vertical alignment of marquee symbols */
+.marquee-text-responsive svg {
+  vertical-align: text-top !important;
+  display: inline-block !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Adjust symbol alignment for larger screens */
+@media (min-width: 1280px) {
+  .marquee-text-responsive svg {
+    transform: translateY(-4px) !important;
+  }
+}
+
 /* Extra small screens below 350px */
 @media (max-width: 349px) {
   .banner-text-responsive {
