@@ -28,7 +28,7 @@ const Services = () => {
     <section id="services" className="min-h-screen bg-black rounded-t-4xl">
       <AnimatedHeaderSection
         subTitle={"Behind the scene, Beyond the screen"}
-        title={"Service"}
+        title={"Services"}
         text={text}
         textColor={"text-white"}
         withScrollTrigger={true}
