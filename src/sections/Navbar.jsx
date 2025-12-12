@@ -3,9 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 
 const socials = [
   { name: "MEETING", href: "https://cal.com" },
-  { name: "Twitter", href: "https://twitter.com" },
-  { name: "LinkedIn", href: "https://linkedin.com" },
-  { name: "GitHub", href: "https://github.com/elijah-farrell/Awwwards-Portfolio" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/aman-kumar-8102bb279/" },
+  { name: "GitHub", href: "https://github.com/Amankumar006" },
 ];
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -21,7 +20,7 @@ const Navbar = () => {
   const iconTl = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [showBurger, setShowBurger] = useState(true);
-  
+
   useGSAP(() => {
     gsap.set(navRef.current, { xPercent: 100 });
     gsap.set([linksRef.current, contactRef.current], {
@@ -134,7 +133,7 @@ const Navbar = () => {
           <div className="font-light">
             <p className="tracking-wider text-white/50">E-mail</p>
             <p className="text-sm tracking-widest lowercase text-pretty">
-              hello@example.com
+              006amanraj@gmail.com
             </p>
           </div>
           <div className="font-light">
