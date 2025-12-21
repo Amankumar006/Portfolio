@@ -86,50 +86,63 @@ const ProjectDetail = () => {
             </div>
 
             {/* Hero Section */}
-            <section className="min-h-screen flex flex-col justify-end pb-16">
-                <div className="animate-in px-1 sm:px-1 md:px-3 lg:px-6 pt-32 mb-8">
-                    <p className="text-sm font-light tracking-[0.5rem] uppercase text-black/60">
-                        {project.frameworks.map((f) => f.name).join(" • ")}
-                    </p>
-                </div>
+            <section className="min-h-screen flex flex-col justify-end pb-16 relative overflow-hidden">
+                {/* Background Image */}
+                <div
+                    className="absolute inset-0 z-0"
+                    style={{
+                        backgroundImage: `url(${project.bgImage})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                    }}
+                />
 
-                <div className="px-1 sm:px-1 md:px-3 lg:px-6 overflow-hidden">
-                    <h1
-                        ref={titleRef}
-                        className="text-[36px] sm:text-[48px] md:text-[68px] lg:text-[90px] xl:text-[110px] 2xl:text-[130px] uppercase leading-tight tracking-tight text-black break-words"
-                    >
-                        {project.name}
-                    </h1>
-                </div>
 
-                <div className="relative px-1 sm:px-1 md:px-3 lg:px-6 mt-16">
-                    <div className="absolute inset-x-0 border-t-2 border-black/20" />
-                    <div className="py-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-                        <p className="animate-in font-light uppercase value-text-responsive text-black/80 max-w-3xl">
-                            {project.description}
+                <div className="relative z-10">
+                    <div className="animate-in px-1 sm:px-1 md:px-3 lg:px-6 pt-32 mb-8">
+                        <p className="text-sm font-light tracking-[0.5rem] uppercase text-black/60">
+                            {project.frameworks.map((f) => f.name).join(" • ")}
                         </p>
+                    </div>
 
-                        {/* Hero Link Button */}
-                        {(project.liveDemo || project.github) && (
-                            <a
-                                href={project.liveDemo || project.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="animate-in flex items-center gap-3 px-8 py-4 bg-black text-white rounded-full hover:scale-105 transition-all duration-300 group flex-shrink-0"
-                            >
-                                <Icon
-                                    icon={project.liveDemo ? "lucide:globe" : "mdi:github"}
-                                    className="text-xl"
-                                />
-                                <span className="text-sm tracking-wider uppercase font-light">
-                                    {project.liveDemo ? "View Live" : "View Code"}
-                                </span>
-                                <Icon
-                                    icon="lucide:arrow-up-right"
-                                    className="text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                                />
-                            </a>
-                        )}
+                    <div className="px-1 sm:px-1 md:px-3 lg:px-6 overflow-hidden">
+                        <h1
+                            ref={titleRef}
+                            className="text-[36px] sm:text-[48px] md:text-[68px] lg:text-[90px] xl:text-[110px] 2xl:text-[130px] uppercase leading-tight tracking-tight text-black break-words"
+                        >
+                            {project.name}
+                        </h1>
+                    </div>
+
+                    <div className="relative px-1 sm:px-1 md:px-3 lg:px-6 mt-16">
+                        <div className="absolute inset-x-0 border-t-2 border-black/20" />
+                        <div className="py-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+                            <p className="animate-in font-light uppercase value-text-responsive text-black/80 max-w-3xl">
+                                {project.description}
+                            </p>
+
+                            {/* Hero Link Button */}
+                            {(project.liveDemo || project.github) && (
+                                <a
+                                    href={project.liveDemo || project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="animate-in flex items-center gap-3 px-8 py-4 bg-black text-white rounded-full hover:scale-105 transition-all duration-300 group flex-shrink-0"
+                                >
+                                    <Icon
+                                        icon={project.liveDemo ? "lucide:globe" : "mdi:github"}
+                                        className="text-xl"
+                                    />
+                                    <span className="text-sm tracking-wider uppercase font-light">
+                                        {project.liveDemo ? "View Live" : "View Code"}
+                                    </span>
+                                    <Icon
+                                        icon="lucide:arrow-up-right"
+                                        className="text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                                    />
+                                </a>
+                            )}
+                        </div>
                     </div>
                 </div>
             </section>
@@ -252,10 +265,21 @@ const ProjectDetail = () => {
                             </h2>
                         </div>
 
-                        <div className="animate-in max-w-4xl">
+                        <div className="animate-in max-w-4xl mb-12">
                             <p className="text-xl md:text-2xl font-light text-white/70 leading-relaxed">
                                 {project.challenges}
                             </p>
+                        </div>
+
+                        <div className="animate-in flex justify-end">
+                            <Link
+                                to={`/project/${project.id}/journey`}
+                                className="group flex items-center gap-4 px-10 py-5 border border-white/30 rounded-full hover:bg-white hover:text-black transition-all duration-300"
+                            >
+                                <Icon icon="lucide:book-open" className="text-2xl" />
+                                <span className="text-lg tracking-wider uppercase font-light">Read Full Journey</span>
+                                <Icon icon="lucide:arrow-right" className="text-2xl transition-transform duration-300 group-hover:translate-x-2" />
+                            </Link>
                         </div>
                     </div>
                 </section>

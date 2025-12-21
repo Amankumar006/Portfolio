@@ -19,7 +19,7 @@ const About = () => {
 
   const statsData = [
     { number: stats.yearsExperience || "2", label: "Years Experience", icon: "lucide:calendar" },
-    { number: stats.projectsCompleted || "15", label: "Projects Built", icon: "lucide:folder" },
+    { number: stats.projectsCompleted || "25", label: "Projects Built", icon: "lucide:folder" },
     { number: stats.technologiesUsed || "10", label: "Technologies", icon: "lucide:code" },
     { number: stats.hackathonsOrganized || "3", label: "Hackathons Led", icon: "lucide:trophy" },
   ];

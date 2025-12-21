@@ -68,7 +68,7 @@ export const projects = [
     longDescription:
       "Campus Connector brings students, organizers, and administrators together with features like QR check-ins, digital certificates, a gamified coin system, and AI-assisted event creation. It supports role-based experiences for Attendees, Organizers, Admins, and Super Admins, making campus event management seamless and engaging.",
     image: "/assets/projects/campus-connector.png",
-    bgImage: "/assets/backgrounds/campus.png",
+    bgImage: "/assets/project-bg-image/ccbg.png",
     github: "",
     liveDemo: "https://campusconnector.me/",
     frameworks: [
@@ -95,7 +95,7 @@ export const projects = [
     longDescription:
       "MachinoAI exists to democratize access to professional-grade tools and insights. Every tool is meticulously engineered with precision, thoroughly tested for edge cases, and optimized for performance. We don't just build tools – we craft solutions that professionals can rely on.",
     image: "/assets/projects/machinoai.png",
-    bgImage: "/assets/backgrounds/machinoai.png",
+    bgImage: "/assets/project-bg-image/machinoai.png",
     github: "",
     liveDemo: "https://machinoai.in/",
     frameworks: [
@@ -121,7 +121,7 @@ export const projects = [
     longDescription:
       "AdaptEd-AI is a truly different learning platform. It's a conversational AI learning companion that generates content in real-time based on student needs, adapts to individual learning styles and goals, and feels like learning with a patient, genius friend. Features 4 distinct onboarding paths: Goal-Based, School, College, and Free-Style learners.",
     image: "/assets/projects/AdaptED.png",
-    bgImage: "/assets/backgrounds/adapted.png",
+    bgImage: "/assets/project-bg-image/adapted-bg.png",
     github: "",
     liveDemo: "https://adapted-personilized-leaning-app.netlify.app/",
     frameworks: [
@@ -148,7 +148,7 @@ export const projects = [
     longDescription:
       "Edu-Law is a mobile app designed to simplify learning about Indian law and fundamental rights. Whether you're a law student, professional, or just someone keen on understanding your rights, Edu-Law offers a structured platform to build your legal knowledge with organized content and intuitive navigation.",
     image: "/assets/projects/Edulaw.png",
-    bgImage: "/assets/backgrounds/edulaw.png",
+    bgImage: "/assets/project-bg-image/edulaw-bg.png",
     github: "https://github.com/Amankumar006/Edulaw",
     liveDemo: "",
     frameworks: [
@@ -169,13 +169,13 @@ export const projects = [
   },
   {
     id: 5,
-    name: "Article Publishing Platform",
+    name: "Publishing Platform",
     description:
       "A feature-rich, modern publishing platform inspired by Medium, built for writers and content creators.",
     longDescription:
       "A feature-rich, modern publishing platform inspired by Medium, built with React, TypeScript, PHP, and MySQL. Designed for writers and content creators who want a clean, distraction-free writing experience with powerful publishing tools.",
     image: "/assets/projects/blog.png",
-    bgImage: "/assets/backgrounds/blog.png",
+    bgImage: "/assets/project-bg-image/blog-bg.png",
     github: "https://github.com/Amankumar006/blog",
     liveDemo: "",
     frameworks: [
@@ -202,7 +202,7 @@ export const projects = [
     longDescription:
       "Buddy AI is an intelligent student assistant chatbot designed to help students manage their academic life through smart note organization, schedule management, and personalized recommendations. The system integrates document intelligence, scheduling capabilities, and natural language processing to create a seamless learning experience.",
     image: "/assets/projects/BuddyAI.png",
-    bgImage: "/assets/backgrounds/buddyai.png",
+    bgImage: "/assets/project-bg-image/buddyai-bg.png",
     github: "https://github.com/Amankumar006/BuddyAi",
     liveDemo: "",
     frameworks: [
@@ -223,13 +223,13 @@ export const projects = [
   },
   {
     id: 7,
-    name: "Shopify Commerce Demo",
+    name: "Shopify Commerce",
     description:
       "A demo project showcasing a Shopify-powered e-commerce storefront built with modern web technologies.",
     longDescription:
       "This is a demo project showcasing a Shopify-powered e-commerce storefront built with Next.js and TypeScript. It demonstrates modern e-commerce patterns including dynamic product pages, cart functionality, and seamless Shopify integration.",
     image: "/assets/projects/shopify-comm.png",
-    bgImage: "/assets/backgrounds/shopify.png",
+    bgImage: "/assets/project-bg-image/shopify-bg.png",
     github: "https://github.com/Amankumar006/shopify-next-commerce-demo",
     liveDemo: "",
     frameworks: [
@@ -250,13 +250,13 @@ export const projects = [
   },
   {
     id: 8,
-    name: "Railways Coach Inspection",
+    name: "Coach Inspection",
     description:
       "A mobile application for Indian Railways coach inspection management with authentication and database operations.",
     longDescription:
       "A mobile application built with React Native/Expo and TypeScript for Indian Railways coach inspection management. The application uses Supabase for authentication and database operations, enabling inspectors to efficiently track and report coach conditions.",
     image: "/assets/projects/railways-inspection.png",
-    bgImage: "/assets/backgrounds/railways.png",
+    bgImage: "/assets/project-bg-image/railways-bg.png",
     github: "https://github.com/Amankumar006/Railways",
     liveDemo: "",
     frameworks: [
@@ -280,7 +280,7 @@ export const projects = [
 // Stats
 export const stats = {
   yearsExperience: 2,
-  projectsCompleted: 15,
+  projectsCompleted: 25,
   technologiesUsed: 10,
   hackathonWins: 1,
   hackathonsOrganized: 3,

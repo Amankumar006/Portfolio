@@ -1,0 +1,248 @@
+{
+    "personalInfo": {
+        "name": "Aman Kumar",
+        "title": "AI & ML Engineering Student",
+        "location": "Bangalore, India",
+        "email": "006amanraj@gmail.com",
+        "phone": "+91 7856808896",
+        "github": "https://github.com/Amankumar006",
+        "linkedin": "https://www.linkedin.com/in/aman-kumar-8102bb279/",
+        "photo": "client/src/assets/Images/Aman.png"
+    },
+    "education": [
+        {
+            "degree": "B.E. in Artificial Intelligence & Machine Learning",
+            "school": "Visvesvaraya Technological University (BTI)",
+            "year": "Apr 2023 - Apr 2027",
+            "location": "Karnataka, India",
+            "current": true,
+            "description": "Currently in 5th semester. Skills: C, Python, JavaScript."
+        },
+        {
+            "degree": "PUC, Mathematics",
+            "school": "Krupanidhi PU College Koramangala",
+            "year": "Jun 2020 - Jun 2022",
+            "location": "Karnataka, India",
+            "description": "Pre-University Course (12th grade). Skills: C++, C, HTML, CSS."
+        },
+        {
+            "degree": "High School",
+            "school": "Kisan High School Devchanddih",
+            "year": "Sep 2010 - Sep 2020",
+            "location": "Karnataka, India"
+        }
+    ],
+    "skills": {
+        "frontend": [
+            {
+                "name": "HTML/CSS",
+                "level": 92
+            },
+            {
+                "name": "JavaScript",
+                "level": 88
+            },
+            {
+                "name": "React",
+                "level": 85
+            },
+            {
+                "name": "TypeScript",
+                "level": 80
+            },
+            {
+                "name": "Tailwind CSS",
+                "level": 82
+            }
+        ],
+        "backend": [
+            {
+                "name": "Python",
+                "level": 88
+            },
+            {
+                "name": "C Programming",
+                "level": 85
+            },
+            {
+                "name": "Node.js",
+                "level": 80
+            },
+            {
+                "name": "Database Management",
+                "level": 75
+            },
+            {
+                "name": "API Development",
+                "level": 78
+            }
+        ],
+        "aiml": [
+            {
+                "name": "Artificial Intelligence",
+                "level": 82
+            },
+            {
+                "name": "Machine Learning",
+                "level": 80
+            },
+            {
+                "name": "TensorFlow.js",
+                "level": 75
+            },
+            {
+                "name": "NLP",
+                "level": 70
+            },
+            {
+                "name": "Data Processing",
+                "level": 78
+            }
+        ],
+        "tools": [
+            {
+                "name": "Git & GitHub",
+                "level": 88
+            },
+            {
+                "name": "VS Code",
+                "level": 95
+            },
+            {
+                "name": "Web Technologies",
+                "level": 85
+            },
+            {
+                "name": "Project Management",
+                "level": 80
+            },
+            {
+                "name": "Team Leadership",
+                "level": 82
+            }
+        ]
+    },
+    "languages": [
+        {
+            "name": "Hindi",
+            "level": "Native"
+        },
+        {
+            "name": "English",
+            "level": "Fluent"
+        }
+    ],
+    "projects": [
+        {
+            "id": 1,
+            "title": "Medibot",
+            "description": "AI-powered health assistant providing health information, wellness tips, and medical guidance with personalized health advice.",
+            "category": "AI & Web",
+            "technologies": [
+                "React",
+                "TensorFlow.js",
+                "Node.js",
+                "MongoDB"
+            ],
+            "featured": true,
+            "link": "https://github.com/amankumar/Medibot",
+            "startDate": "Jan 2023",
+            "status": "Ongoing"
+        },
+        {
+            "id": 2,
+            "title": "Buddy AI",
+            "description": "Intelligent student assistant chatbot for smart note organization, schedule management, and personalized recommendations.",
+            "category": "AI Assistant",
+            "technologies": [
+                "React Native",
+                "Python",
+                "Flask",
+                "NLP"
+            ],
+            "featured": true,
+            "link": "https://github.com/amankumar/BuddyAI",
+            "startDate": "Mar 2023",
+            "endDate": "Dec 2023"
+        },
+        {
+            "id": 3,
+            "title": "BTI Clubs",
+            "description": "A club management system for organizing and managing club activities at BTI, including event management and member registration.",
+            "category": "Web App",
+            "link": "https://github.com/amankumar/BTIClubs"
+        },
+        {
+            "id": 4,
+            "title": "PDF Extraction API",
+            "description": "Advanced content extraction API for PDF documents, optimized for multiple extraction modes and performance.",
+            "category": "API Service",
+            "link": "https://github.com/amankumar/PDFExtractionAPI"
+        },
+        {
+            "id": 5,
+            "title": "Edulaw",
+            "description": "A TypeScript-based application with PLpgSQL integration that helps students and legal professionals manage their education and legal work.",
+            "category": "Education",
+            "link": "https://github.com/amankumar/Edulaw"
+        },
+        {
+            "id": 6,
+            "title": "Eventure Connector",
+            "description": "A TypeScript-driven project for connecting event-based workflows, focusing on minimalistic design with event management features.",
+            "category": "Event Management",
+            "link": "https://github.com/amankumar/EventureConnector"
+        }
+    ],
+    "blogPosts": [
+        {
+            "id": 1,
+            "title": "Building a Resilient AI Assistant with TensorFlow.js",
+            "slug": "building-resilient-ai-assistant-tensorflowjs",
+            "excerpt": "Learn how I built Medibot, an AI-powered health assistant using React and TensorFlow.js.",
+            "publishedDate": "April 15, 2025",
+            "readTime": "6 min read",
+            "tags": [
+                "AI",
+                "TensorFlow.js",
+                "React",
+                "Healthcare"
+            ],
+            "featured": true
+        },
+        {
+            "id": 2,
+            "title": "Optimizing PDF Content Extraction for Web Applications",
+            "slug": "optimizing-pdf-content-extraction-web-applications",
+            "excerpt": "A deep dive into the techniques used in my PDF Extraction API for high-performance document parsing.",
+            "publishedDate": "March 28, 2025",
+            "readTime": "8 min read",
+            "tags": [
+                "PDF",
+                "API Development",
+                "Performance Optimization"
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Student Assistance with AI: Building Buddy AI",
+            "slug": "student-assistance-ai-building-buddy-ai",
+            "excerpt": "How I built an intelligent student assistant that helps with note organization and schedule management.",
+            "publishedDate": "April 5, 2025",
+            "readTime": "7 min read",
+            "tags": [
+                "AI Assistant",
+                "Education",
+                "React Native",
+                "Python"
+            ]
+        }
+    ],
+    "stats": {
+        "yearsExperience": 2,
+        "projectsCompleted": 25,
+        "technologiesUsed": 10,
+        "hackathonWins": 1,
+        "hackathonsOrganized": 3
+    }
+}

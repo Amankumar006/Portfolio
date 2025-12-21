@@ -8,6 +8,7 @@ import Works from "./sections/Works";
 import ContactSummary from "./sections/ContactSummary";
 import Contact from "./sections/Contact";
 import ProjectDetail from "./pages/ProjectDetail";
+import ProjectJourney from "./pages/ProjectJourney";
 import { useProgress } from "@react-three/drei";
 
 // Home page component with all sections
@@ -69,6 +70,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/project/:id" element={<ProjectDetail />} />
+            <Route path="/project/:id/journey" element={<ProjectJourney />} />
           </Routes>
         </div>
       </ReactLenis>
