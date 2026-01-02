@@ -13,7 +13,7 @@ const EducationTimeline = ({ education }) => {
         const items = gsap.utils.toArray(".timeline-item");
         const container = containerRef.current;
 
-        // Animate the vertical line drawing downwards
+        // Animate the vertical line drawing downwards (Base Path)
         gsap.fromTo(
             lineRef.current,
             { scaleY: 0, transformOrigin: "top" },
@@ -29,36 +29,56 @@ const EducationTimeline = ({ education }) => {
             }
         );
 
-        // Animate each item as it comes into view
+        // Parallax 3D Entry Animation
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: container,
+                start: "top 80%",
+                end: "bottom 20%",
+                scrub: 0.5, // Smooth scrubbing
+            }
+        });
+
         items.forEach((item, i) => {
             gsap.fromTo(
                 item,
-                { opacity: 0, x: -50 },
+                {
+                    opacity: 0,
+                    y: 100,
+                    rotateX: 45,
+                    scale: 0.9,
+                    z: -100
+                },
                 {
                     opacity: 1,
-                    x: 0,
-                    duration: 0.8,
+                    y: 0,
+                    rotateX: 0,
+                    scale: 1,
+                    z: 0,
+                    duration: 1,
+                    stagger: 0.2, // Stagger managed by loop timing usually, but here distinct triggers might be better or single scrubbing timeline
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: item,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse",
-                    },
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1, // Link to scroll for that "connected" feel
+                    }
                 }
             );
         });
     }, { scope: containerRef });
 
     return (
-        <div ref={containerRef} className="relative pl-8 md:pl-0" role="list" aria-label="Education Timeline">
-            {/* Vertical Timeline Line */}
+        <div ref={containerRef} className="relative pl-8 md:pl-0 perspective-1000" role="list" aria-label="Education Timeline" style={{ perspective: "1000px" }}>
+            {/* Base Vertical Line */}
             <div
                 ref={lineRef}
-                className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-white/80 via-white/20 to-transparent -translate-x-1/2"
+                className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2 overflow-hidden"
                 aria-hidden="true"
             />
 
-            <div className="space-y-12">
+            <div className="space-y-24">
                 {education.map((edu, index) => (
                     <div
                         key={index}
