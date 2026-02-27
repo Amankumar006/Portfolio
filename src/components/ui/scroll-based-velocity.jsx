@@ -10,6 +10,9 @@ import {
 } from "motion/react"
 import { cn } from "../../lib/utils"
 
+const MotionDiv = motion.div;
+
+// eslint-disable-next-line react-refresh/only-export-components
 export const wrap = (min, max, v) => {
   const rangeSize = max - min
   return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min
@@ -23,7 +26,6 @@ export function ScrollVelocityContainer({
   ...props
 }) {
   const { scrollY } = useScroll()
-  const scrollVelocity = useVelocity(scrollY)
   const [virtualScrollY, setVirtualScrollY] = useState(0)
   
   // Create a virtual scroll that continues beyond the bottom
@@ -183,7 +185,7 @@ function ScrollVelocityRowImpl({
       className={cn("w-full overflow-hidden whitespace-nowrap", className)}
       {...props}
     >
-      <motion.div
+      <MotionDiv
         className="inline-flex transform-gpu items-center will-change-transform select-none"
         style={{ x }}
       >
@@ -197,7 +199,7 @@ function ScrollVelocityRowImpl({
             {children}
           </div>
         ))}
-      </motion.div>
+      </MotionDiv>
     </div>
   )
 }

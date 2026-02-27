@@ -10,11 +10,11 @@ import { stats } from "../constants";
 import portfolioData from "../../portfolio-data.json";
 
 const About = () => {
-    const text = `B.E. in AI & Machine Learning student
-    Building intelligent solutions that make
-    a real-world impact`;
+    const text = `AI & Machine Learning Engineer
+    Architecting intelligent systems
+    for the future`;
 
-    const aboutText = `Currently pursuing AI & ML Engineering at Visvesvaraya Technological University. Passionate about creating AI-powered applications that solve real problems—from healthcare assistants to student productivity tools.`;
+    const aboutText = `I am an AI & ML engineer at Visvesvaraya Technological University, dedicated to bridging the gap between theoretical models and practical applications. My focus lies in architecting intelligent systems that tackle real-world challenges, with a specialization in healthcare innovation and productivity enhancement tools.`;
 
     const imgRef = useRef(null);
     const statsRef = useRef(null);
@@ -28,10 +28,10 @@ const About = () => {
     ];
 
     const interests = [
-        "Building AI-powered applications",
-        "Organizing hackathons & leading tech communities",
-        "Exploring cutting-edge ML and NLP",
-        "Gaming & discovering new technologies",
+        "Architecting Scalable AI Solutions",
+        "Fostering Tech Communities & Hackathons",
+        "Researching Applied ML & NLP",
+        "Exploring Emerging Tech & Strategic Gaming",
     ];
 
     useGSAP(() => {
@@ -231,7 +231,7 @@ const About = () => {
 
 
                         {/* CTA */}
-                        <div className="about-reveal mt-8">
+                        <div className="about-reveal mt-8 flex flex-wrap gap-8">
                             <a
                                 href="#contact"
                                 className="inline-flex items-center gap-3 text-white/60 hover:text-white transition-colors duration-300 group"
@@ -242,6 +242,20 @@ const About = () => {
                                 <Icon
                                     icon="lucide:arrow-right"
                                     className="group-hover:translate-x-2 transition-transform duration-300"
+                                />
+                            </a>
+                            <a
+                                href="/Aman_Kumar_Resume.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-3 text-white/60 hover:text-white transition-colors duration-300 group"
+                            >
+                                <span className="text-sm uppercase tracking-wider font-light">
+                                    View Resume
+                                </span>
+                                <Icon
+                                    icon="lucide:arrow-up-right"
+                                    className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
                                 />
                             </a>
                         </div>

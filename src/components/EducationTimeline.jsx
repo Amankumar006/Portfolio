@@ -30,7 +30,7 @@ const EducationTimeline = ({ education }) => {
         );
 
         // Parallax 3D Entry Animation
-        const tl = gsap.timeline({
+        gsap.timeline({
             scrollTrigger: {
                 trigger: container,
                 start: "top 80%",
@@ -39,7 +39,7 @@ const EducationTimeline = ({ education }) => {
             }
         });
 
-        items.forEach((item, i) => {
+        items.forEach((item) => {
             gsap.fromTo(
                 item,
                 {
@@ -56,7 +56,7 @@ const EducationTimeline = ({ education }) => {
                     scale: 1,
                     z: 0,
                     duration: 1,
-                    stagger: 0.2, // Stagger managed by loop timing usually, but here distinct triggers might be better or single scrubbing timeline
+                    stagger: 0.2, // Stagger managed by loop timing usually, but here distinct triggers might be better or a single scrubbing timeline
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: item,

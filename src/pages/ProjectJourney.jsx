@@ -8,7 +8,6 @@ const ProjectJourney = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const containerRef = useRef(null);
-    const textRef = useRef(null);
 
     useGSAP(() => {
         const tl = gsap.timeline();

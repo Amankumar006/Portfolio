@@ -342,7 +342,7 @@ const ProjectDetail = () => {
 
                     {/* Clean list like Works section */}
                     <div className="animate-in">
-                        {otherProjects.map((proj, index) => (
+                        {otherProjects.map((proj) => (
                             <Link
                                 key={proj.id}
                                 to={`/project/${proj.id}`}

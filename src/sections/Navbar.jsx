@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 // import { socials } from "../constants";
 
 const socials = [
+  { name: "RESUME", href: "/Aman_Kumar_Resume.pdf" },
   { name: "MEETING", href: "https://cal.com" },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/aman-kumar-8102bb279/" },
   { name: "GitHub", href: "https://github.com/Amankumar006" },
@@ -143,6 +144,8 @@ const Navbar = () => {
                 <a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm tracking-widest uppercase hover:text-white transition-colors duration-300"
                 >
                   {"{ "}
