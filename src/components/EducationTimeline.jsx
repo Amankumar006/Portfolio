@@ -29,43 +29,70 @@ const EducationTimeline = ({ education }) => {
             }
         );
 
-        // Parallax 3D Entry Animation
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: container,
-                start: "top 80%",
-                end: "bottom 20%",
-                scrub: 0.5, // Smooth scrubbing
-            }
-        });
-
-        items.forEach((item) => {
-            gsap.fromTo(
-                item,
-                {
-                    opacity: 0,
-                    y: 100,
-                    rotateX: 45,
-                    scale: 0.9,
-                    z: -100
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    rotateX: 0,
-                    scale: 1,
-                    z: 0,
-                    duration: 1,
-                    stagger: 0.2, // Stagger managed by loop timing usually, but here distinct triggers might be better or a single scrubbing timeline
-                    ease: "power3.out",
+        // Use matchMedia for tiered animation complexity
+        ScrollTrigger.matchMedia({
+            // Desktop: full 3D parallax entry
+            "(min-width: 768px)": function () {
+                gsap.timeline({
                     scrollTrigger: {
-                        trigger: item,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1, // Link to scroll for that "connected" feel
+                        trigger: container,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        scrub: 0.5,
                     }
-                }
-            );
+                });
+
+                items.forEach((item) => {
+                    gsap.fromTo(
+                        item,
+                        {
+                            opacity: 0,
+                            y: 100,
+                            rotateX: 45,
+                            scale: 0.9,
+                            z: -100
+                        },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            rotateX: 0,
+                            scale: 1,
+                            z: 0,
+                            duration: 1,
+                            stagger: 0.2,
+                            ease: "power3.out",
+                            scrollTrigger: {
+                                trigger: item,
+                                start: "top 90%",
+                                end: "top 60%",
+                                scrub: 1,
+                            }
+                        }
+                    );
+                });
+            },
+
+            // Mobile: lightweight reveal (no 3D transforms = no extra GPU layers)
+            "(max-width: 767px)": function () {
+                items.forEach((item) => {
+                    gsap.fromTo(
+                        item,
+                        { opacity: 0, y: 60 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "power3.out",
+                            scrollTrigger: {
+                                trigger: item,
+                                start: "top 90%",
+                                end: "top 70%",
+                                scrub: 0.5,
+                            }
+                        }
+                    );
+                });
+            },
         });
     }, { scope: containerRef });
 

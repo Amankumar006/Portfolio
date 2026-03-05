@@ -1,9 +1,9 @@
+import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
-export const AnimatedTextLines = ({ text, className }) => {
+export const AnimatedTextLines = React.memo(({ text, className }) => {
   const containerRef = useRef(null);
   const lineRefs = useRef([]);
   const lines = text.split("\n").filter((line) => line.trim() !== "");
@@ -35,4 +35,6 @@ export const AnimatedTextLines = ({ text, className }) => {
       ))}
     </div>
   );
-};
+});
+
+AnimatedTextLines.displayName = "AnimatedTextLines";

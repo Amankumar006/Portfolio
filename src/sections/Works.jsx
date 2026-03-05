@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link, useNavigate } from "react-router-dom";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import { projects } from "../constants";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -11,7 +11,8 @@ const Works = () => {
   const previewRef = useRef(null);
   const navigate = useNavigate();
   const [activeProject, setActiveProject] = useState(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mousePositionRef = useRef({ x: 0, y: 0 });
+  const rafIdRef = useRef(null);
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
@@ -104,13 +105,26 @@ const Works = () => {
     }
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = useCallback((e) => {
     if (!isDesktop) return;
-    setMousePosition({
-      x: e.clientX,
-      y: e.clientY,
+    // Throttle to rAF — max 60fps, no React re-renders
+    if (rafIdRef.current) return;
+    rafIdRef.current = requestAnimationFrame(() => {
+      mousePositionRef.current = { x: e.clientX, y: e.clientY };
+      if (previewRef.current) {
+        previewRef.current.style.left = `${e.clientX + 20}px`;
+        previewRef.current.style.top = `${e.clientY - 150}px`;
+      }
+      rafIdRef.current = null;
     });
-  };
+  }, [isDesktop]);
+
+  // Cleanup rAF on unmount
+  useEffect(() => {
+    return () => {
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+    };
+  }, []);
 
   return (
     <section
@@ -131,24 +145,23 @@ const Works = () => {
         <div
           ref={previewRef}
           className="fixed pointer-events-none z-50 opacity-0 scale-95"
-          style={{
-            left: `${mousePosition.x + 20}px`,
-            top: `${mousePosition.y - 150}px`,
-            transform: "translate(0, 0)",
-          }}
         >
           {activeProject && (
             <div className="w-[600px] h-[420px] rounded-2xl overflow-hidden shadow-2xl border border-black/10">
               <div className="relative w-full h-full">
                 {/* Project Screenshot */}
-                <img
-                  src={activeProject.image}
-                  alt={activeProject.name}
-                  className="absolute inset-0 w-full h-full object-contain bg-white"
-                />
-
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet={activeProject.image.replace('.png', '-480w.webp') + ' 480w, ' + activeProject.image.replace('.png', '.webp') + ' 1024w'}
+                    sizes="600px"
+                  />
+                  <img
+                    src={activeProject.image}
+                    alt={activeProject.name}
+                    className="absolute inset-0 w-full h-full object-contain bg-white"
+                  />
+                </picture>
 
                 {/* Project Info */}
                 <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -206,16 +219,34 @@ const Works = () => {
             </div>
             {/* mobile preview image */}
             <div className="relative flex items-center justify-center px-1 sm:px-1 md:px-3 lg:px-6 md:hidden h-[400px] ultra-small-screen">
-              <img
-                src={project.bgImage}
-                alt={`${project.name}-bg-image`}
-                className="object-cover w-full h-full rounded-md brightness-50"
-              />
-              <img
-                src={project.image}
-                alt={`${project.name}-image`}
-                className="absolute bg-center px-14 rounded-xl"
-              />
+              <picture>
+                <source
+                  srcSet={project.bgImage.replace('.png', '-480w.webp') + ' 480w, ' + project.bgImage.replace('.png', '.webp') + ' 1024w'}
+                  sizes="100vw"
+                  type="image/webp"
+                />
+                <img
+                  src={project.bgImage}
+                  alt={`${project.name}-bg-image`}
+                  className="object-cover w-full h-full rounded-md brightness-50"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <picture>
+                <source
+                  srcSet={project.image.replace('.png', '-480w.webp') + ' 480w, ' + project.image.replace('.png', '.webp') + ' 1024w'}
+                  sizes="80vw"
+                  type="image/webp"
+                />
+                <img
+                  src={project.image}
+                  alt={`${project.name}-image`}
+                  className="absolute bg-center px-14 rounded-xl"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
           </Link>
         ))}

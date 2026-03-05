@@ -5,7 +5,7 @@ import {
   ScrollVelocityRow,
 } from "./ui/scroll-based-velocity";
 
-const Marquee = ({
+const Marquee = React.memo(({
   items,
   className = "text-white bg-black",
   icon = "mdi:star-four-points",
@@ -30,6 +30,8 @@ const Marquee = ({
       </ScrollVelocityRow>
     </ScrollVelocityContainer>
   );
-};
+});
+
+Marquee.displayName = "Marquee";
 
 export default Marquee;

@@ -3,6 +3,9 @@ import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import Marquee from "../components/Marquee";
 import { socials } from "../constants";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const text = `Got a project idea or want to collaborate?
@@ -14,15 +17,28 @@ const Contact = () => {
     "Let's Chat",
   ];
   useGSAP(() => {
-    gsap.from(".social-link", {
-      y: 100,
-      opacity: 0,
-      delay: 0.5,
-      duration: 1,
-      stagger: 0.3,
-      ease: "back.out",
-      scrollTrigger: {
-        trigger: ".social-link",
+    ScrollTrigger.matchMedia({
+      "(min-width: 768px)": function () {
+        gsap.from(".social-link", {
+          y: 100,
+          opacity: 0,
+          delay: 0.5,
+          duration: 1,
+          stagger: 0.3,
+          ease: "back.out",
+          scrollTrigger: { trigger: ".social-link" },
+        });
+      },
+      "(max-width: 767px)": function () {
+        gsap.from(".social-link", {
+          y: 40,
+          opacity: 0,
+          delay: 0.3,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".social-link" },
+        });
       },
     });
   }, []);

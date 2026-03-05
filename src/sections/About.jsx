@@ -5,9 +5,12 @@ import EducationTimeline from "../components/EducationTimeline";
 import SkillMatrix from "../components/SkillMatrix";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { stats } from "../constants";
 import portfolioData from "../../portfolio-data.json";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
     const text = `AI & Machine Learning Engineer
@@ -35,59 +38,91 @@ const About = () => {
     ];
 
     useGSAP(() => {
-        // Image reveal with clip path
-        gsap.set(imgRef.current, {
-            clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)",
-        });
-        gsap.to(imgRef.current, {
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-            duration: 1.5,
-            ease: "power4.out",
-            scrollTrigger: { trigger: imgRef.current, start: "top 80%" },
-        });
+        // Use matchMedia for tiered animation complexity
+        ScrollTrigger.matchMedia({
+            // Desktop: full animations
+            "(min-width: 768px)": function () {
+                // Image reveal with clip path (GPU-friendly on desktop)
+                gsap.set(imgRef.current, {
+                    clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)",
+                });
+                gsap.to(imgRef.current, {
+                    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+                    duration: 1.5,
+                    ease: "power4.out",
+                    scrollTrigger: { trigger: imgRef.current, start: "top 80%" },
+                });
 
-        // Stats counter animation
-        gsap.from(".stat-number", {
-            textContent: 0,
-            duration: 2,
-            ease: "power2.out",
-            snap: { textContent: 1 },
-            scrollTrigger: { trigger: statsRef.current, start: "top 80%" },
-        });
+                // Interest items with x-slide
+                gsap.from(".interest-item", {
+                    x: -30,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.08,
+                    ease: "power3.out",
+                    scrollTrigger: { trigger: ".interests-container", start: "top 80%" },
+                });
+            },
 
-        // Staggered content reveal
-        gsap.from(".about-reveal", {
-            y: 60,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: "power3.out",
-            scrollTrigger: { trigger: ".about-content", start: "top 75%" },
-        });
+            // Mobile: lighter animations (transform-based, hardware-accelerated)
+            "(max-width: 767px)": function () {
+                // Image reveal with scaleY (hardware-accelerated)
+                gsap.set(imgRef.current, { opacity: 0, y: 40 });
+                gsap.to(imgRef.current, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: { trigger: imgRef.current, start: "top 85%" },
+                });
 
-        // Interest items
-        gsap.from(".interest-item", {
-            x: -30,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.08,
-            ease: "power3.out",
-            scrollTrigger: { trigger: ".interests-container", start: "top 80%" },
-        });
+                // Simpler interest items
+                gsap.from(".interest-item", {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.5,
+                    stagger: 0.06,
+                    ease: "power2.out",
+                    scrollTrigger: { trigger: ".interests-container", start: "top 85%" },
+                });
+            },
 
-        // Languages Scramble Effect
-        const langs = gsap.utils.toArray(".lang-item");
-        langs.forEach((lang) => {
-            gsap.from(lang, {
-                opacity: 0,
-                y: 20,
-                duration: 0.8,
-                stagger: 0.1,
-                scrollTrigger: {
-                    trigger: ".languages-container",
-                    start: "top 80%",
-                },
-            });
+            // All devices: shared animations
+            all: function () {
+                // Stats counter animation
+                gsap.from(".stat-number", {
+                    textContent: 0,
+                    duration: 2,
+                    ease: "power2.out",
+                    snap: { textContent: 1 },
+                    scrollTrigger: { trigger: statsRef.current, start: "top 80%" },
+                });
+
+                // Staggered content reveal
+                gsap.from(".about-reveal", {
+                    y: 60,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: "power3.out",
+                    scrollTrigger: { trigger: ".about-content", start: "top 75%" },
+                });
+
+                // Languages
+                const langs = gsap.utils.toArray(".lang-item");
+                langs.forEach((lang) => {
+                    gsap.from(lang, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.8,
+                        stagger: 0.1,
+                        scrollTrigger: {
+                            trigger: ".languages-container",
+                            start: "top 80%",
+                        },
+                    });
+                });
+            },
         });
     });
 
@@ -138,12 +173,21 @@ const About = () => {
                     {/* Image with overlay */}
                     <div className="lg:w-2/5 relative">
                         <div className="relative overflow-hidden rounded-3xl sticky top-24">
-                            <img
-                                ref={imgRef}
-                                src="/images/Aman.png"
-                                alt="Aman Kumar"
-                                className="w-full"
-                            />
+                            <picture>
+                                <source
+                                    srcSet="/images/Aman-480w.webp 480w, /images/Aman-1024w.webp 1024w, /images/Aman.webp 1920w"
+                                    sizes="(max-width: 768px) 100vw, 40vw"
+                                    type="image/webp"
+                                />
+                                <img
+                                    ref={imgRef}
+                                    src="/images/Aman.png"
+                                    alt="Aman Kumar"
+                                    className="w-full"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </picture>
                             {/* Subtle gradient overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 

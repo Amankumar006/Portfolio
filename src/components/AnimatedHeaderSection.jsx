@@ -3,6 +3,10 @@ import { useRef } from "react";
 import { AnimatedTextLines } from "../components/AnimatedTextLines";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const AnimatedHeaderSection = ({
   subTitle,
   title,
@@ -15,28 +19,42 @@ const AnimatedHeaderSection = ({
   const shouldSplitTitle = title.includes(" ");
   const titleParts = shouldSplitTitle ? title.split(" ") : [title];
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: withScrollTrigger
-        ? {
-          trigger: contextRef.current,
-        }
-        : undefined,
-    });
-    tl.from(contextRef.current, {
-      y: "50vh",
-      duration: 1,
-      ease: "circ.out",
-    });
-    tl.from(
-      headerRef.current,
-      {
-        opacity: 0,
-        y: "200",
-        duration: 1,
-        ease: "circ.out",
+    ScrollTrigger.matchMedia({
+      "(min-width: 768px)": function () {
+        const tl = gsap.timeline({
+          scrollTrigger: withScrollTrigger
+            ? { trigger: contextRef.current }
+            : undefined,
+        });
+        tl.from(contextRef.current, {
+          y: "50vh",
+          duration: 1,
+          ease: "circ.out",
+        });
+        tl.from(
+          headerRef.current,
+          { opacity: 0, y: "200", duration: 1, ease: "circ.out" },
+          "<+0.2"
+        );
       },
-      "<+0.2"
-    );
+      "(max-width: 767px)": function () {
+        const tl = gsap.timeline({
+          scrollTrigger: withScrollTrigger
+            ? { trigger: contextRef.current }
+            : undefined,
+        });
+        tl.from(contextRef.current, {
+          y: "20vh",
+          duration: 0.8,
+          ease: "circ.out",
+        });
+        tl.from(
+          headerRef.current,
+          { opacity: 0, y: 80, duration: 0.8, ease: "circ.out" },
+          "<+0.2"
+        );
+      },
+    });
   }, []);
   return (
     <div ref={contextRef}>

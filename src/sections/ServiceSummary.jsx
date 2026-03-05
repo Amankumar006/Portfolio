@@ -6,32 +6,44 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ServiceSummary = () => {
   useGSAP(() => {
-    gsap.to("#title-service-1", {
-      xPercent: 15,
-      scrollTrigger: {
-        trigger: "#title-service-1",
-        scrub: 1,
+    ScrollTrigger.matchMedia({
+      // Desktop — full parallax offsets
+      "(min-width: 768px)": function () {
+        gsap.to("#title-service-1", {
+          xPercent: 15,
+          scrollTrigger: { trigger: "#title-service-1", scrub: 1 },
+        });
+        gsap.to("#title-service-2", {
+          xPercent: -20,
+          scrollTrigger: { trigger: "#title-service-2", scrub: 1 },
+        });
+        gsap.to("#title-service-3", {
+          xPercent: 25,
+          scrollTrigger: { trigger: "#title-service-3", scrub: 1 },
+        });
+        gsap.to("#title-service-4", {
+          xPercent: -15,
+          scrollTrigger: { trigger: "#title-service-4", scrub: 1 },
+        });
       },
-    });
-    gsap.to("#title-service-2", {
-      xPercent: -20,
-      scrollTrigger: {
-        trigger: "#title-service-2",
-        scrub: 1,
-      },
-    });
-    gsap.to("#title-service-3", {
-      xPercent: 25,
-      scrollTrigger: {
-        trigger: "#title-service-3",
-        scrub: 1,
-      },
-    });
-    gsap.to("#title-service-4", {
-      xPercent: -15,
-      scrollTrigger: {
-        trigger: "#title-service-4",
-        scrub: 1,
+      // Mobile — reduced offsets, lighter scrub
+      "(max-width: 767px)": function () {
+        gsap.to("#title-service-1", {
+          xPercent: 8,
+          scrollTrigger: { trigger: "#title-service-1", scrub: 0.5 },
+        });
+        gsap.to("#title-service-2", {
+          xPercent: -10,
+          scrollTrigger: { trigger: "#title-service-2", scrub: 0.5 },
+        });
+        gsap.to("#title-service-3", {
+          xPercent: 12,
+          scrollTrigger: { trigger: "#title-service-3", scrub: 0.5 },
+        });
+        gsap.to("#title-service-4", {
+          xPercent: -8,
+          scrollTrigger: { trigger: "#title-service-4", scrub: 0.5 },
+        });
       },
     });
   });

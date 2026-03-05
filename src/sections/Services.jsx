@@ -3,7 +3,10 @@ import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import { servicesData } from "../constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 import { Icon } from "@iconify/react/dist/iconify.js";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
   const text = `From AI-powered applications to full-stack development. 
@@ -20,23 +23,41 @@ const Services = () => {
   };
 
   useGSAP(() => {
-    // Left side tabs animation
-    gsap.from(".service-tab", {
-      x: -40,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: "power3.out",
-      scrollTrigger: { trigger: containerRef.current, start: "top 75%" },
-    });
-
-    // Right side content animation
-    gsap.from(".service-content", {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-      scrollTrigger: { trigger: containerRef.current, start: "top 75%" },
+    ScrollTrigger.matchMedia({
+      "(min-width: 768px)": function () {
+        gsap.from(".service-tab", {
+          x: -40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: containerRef.current, start: "top 75%" },
+        });
+        gsap.from(".service-content", {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: { trigger: containerRef.current, start: "top 75%" },
+        });
+      },
+      "(max-width: 767px)": function () {
+        gsap.from(".service-tab", {
+          y: 20,
+          opacity: 0,
+          duration: 0.4,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: { trigger: containerRef.current, start: "top 80%" },
+        });
+        gsap.from(".service-content", {
+          y: 30,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power3.out",
+          scrollTrigger: { trigger: containerRef.current, start: "top 80%" },
+        });
+      },
     });
   }, []);
 

@@ -1,10 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { projects } from "../constants";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Marquee from "../components/Marquee";
+
+/** Convert a .png path to its .webp equivalent */
+const toWebP = (src) => src.replace(/\.png$/i, ".webp");
 
 const ProjectDetail = () => {
     const { id } = useParams();
@@ -88,14 +91,20 @@ const ProjectDetail = () => {
             {/* Hero Section */}
             <section className="min-h-screen flex flex-col justify-end pb-16 relative overflow-hidden">
                 {/* Background Image */}
-                <div
-                    className="absolute inset-0 z-0"
-                    style={{
-                        backgroundImage: `url(${project.bgImage})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                    }}
-                />
+                <picture className="absolute inset-0 z-0">
+                    <source
+                        type="image/webp"
+                        srcSet={`${toWebP(project.bgImage).replace('.webp', '-480w.webp')} 480w, ${toWebP(project.bgImage).replace('.webp', '-1024w.webp')} 1024w, ${toWebP(project.bgImage)} 1920w`}
+                        sizes="100vw"
+                    />
+                    <img
+                        src={project.bgImage}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loading="eager"
+                        decoding="async"
+                    />
+                </picture>
 
 
                 <div className="relative z-10">

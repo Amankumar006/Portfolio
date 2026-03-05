@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
@@ -7,9 +7,11 @@ import About from "./sections/About";
 import Works from "./sections/Works";
 import ContactSummary from "./sections/ContactSummary";
 import Contact from "./sections/Contact";
-import ProjectDetail from "./pages/ProjectDetail";
-import ProjectJourney from "./pages/ProjectJourney";
 import { useProgress } from "@react-three/drei";
+
+// Lazy-load pages that aren't on the home route
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const ProjectJourney = lazy(() => import("./pages/ProjectJourney"));
 
 // Home page component with all sections
 const HomePage = () => {
@@ -28,11 +30,13 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
-      <Hero />
-      <About />
-      <Works />
-      <ContactSummary />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <Works />
+        <ContactSummary />
+        <Contact />
+      </main>
     </>
   );
 };
@@ -40,18 +44,40 @@ const HomePage = () => {
 const App = () => {
   const { progress } = useProgress();
   const [isReady, setIsReady] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    if (progress === 100) {
+    if (progress === 100 && !isReady) {
       setIsReady(true);
+      // Keep the loader mounted for the fade-out animation
+      const timer = setTimeout(() => setShowLoader(false), 800);
+      return () => clearTimeout(timer);
     }
-  }, [progress]);
+  }, [progress, isReady]);
+
+  // Lenis options: lighter lerp on mobile for less GPU work
+  const lenisOptions = useMemo(() => {
+    const isMobile = window.innerWidth < 768;
+    return {
+      lerp: isMobile ? 0.08 : 0.1,
+      touchMultiplier: 1.5,
+      smoothWheel: true,
+      syncTouch: false, // native touch scroll on mobile for better perf
+    };
+  }, []);
 
   return (
     <BrowserRouter>
-      <ReactLenis root className="relative w-screen min-h-screen overflow-x-hidden">
-        {!isReady && (
-          <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black text-white transition-opacity duration-700 font-light">
+      <ReactLenis root options={lenisOptions} className="relative w-screen min-h-screen overflow-x-hidden">
+        {showLoader && (
+          <div
+            className={`fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black text-white transition-opacity duration-700 font-light ${isReady ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+            role="progressbar"
+            aria-valuenow={Math.floor(progress)}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Loading portfolio"
+          >
             <p className="mb-4 text-xl tracking-widest animate-pulse">
               Loading {Math.floor(progress)}%
             </p>
@@ -69,8 +95,16 @@ const App = () => {
         >
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/project/:id" element={<ProjectDetail />} />
-            <Route path="/project/:id/journey" element={<ProjectJourney />} />
+            <Route path="/project/:id" element={
+              <Suspense fallback={<div className="min-h-screen bg-primary" />}>
+                <ProjectDetail />
+              </Suspense>
+            } />
+            <Route path="/project/:id/journey" element={
+              <Suspense fallback={<div className="min-h-screen bg-primary" />}>
+                <ProjectJourney />
+              </Suspense>
+            } />
           </Routes>
         </div>
       </ReactLenis>
